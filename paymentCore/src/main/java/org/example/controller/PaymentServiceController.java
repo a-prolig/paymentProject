@@ -13,21 +13,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/paymentService")
+@RequestMapping("/products")
 public class PaymentServiceController {
-
     private final PaymentService paymentService;
 
     public PaymentServiceController(PaymentService paymentService) {
         this.paymentService = paymentService;
     }
 
-    @GetMapping("/getClientProducts")
+    @GetMapping("/")
     public List<ClientProduct> getClientProducts() {
       return paymentService.getClientProducts();
     }
 
-    @GetMapping("/getClientProduct/{id}")
+    @GetMapping("/{id}")
     public ClientProduct getClientProduct(@PathVariable String id) {
         return paymentService.getClientProduct(id);
     }
@@ -36,5 +35,4 @@ public class PaymentServiceController {
     public ClientProduct executePayment(@RequestBody RequestDto dto) {
         return paymentService.executePayment(dto);
     }
-
 }
