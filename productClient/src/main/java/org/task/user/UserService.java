@@ -1,7 +1,10 @@
 package org.task.user;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class UserService {
     private final UserDao userDao;
 

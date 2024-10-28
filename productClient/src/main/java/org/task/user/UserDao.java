@@ -1,5 +1,6 @@
 package org.task.user;
 
+import org.springframework.stereotype.Service;
 import org.task.config.AppConfig;
 
 import java.sql.Connection;
@@ -9,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class UserDao {
     public List<User> getAll() {
         String SQL_QUERY = "select * from users";

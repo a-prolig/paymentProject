@@ -27,17 +27,6 @@ public class AppConfig extends HikariConfig{
                 .password("postgres")
                 .build();
     }
-
-    @Bean
-    public UserDao getUserDao() {
-        return new UserDao();
-    }
-
-    @Bean
-    public UserService getUserService() {
-        return new UserService(getUserDao());
-    }
-
     @Bean
     public RestTemplate restTemplate(RestTemplateResponseErrorHandler errorHandler) {
         return new RestTemplateBuilder().errorHandler(errorHandler).build();
