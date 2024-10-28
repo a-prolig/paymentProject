@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: paymentCore
+
+server:
+  port:
+    8080
+
+
+
+
