@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.task.clientStorage.ClientProduct;
-import org.task.clientStorage.ClientProductService;
+import org.task.entity.ClientProduct;
+import org.task.service.ClientProductService;
 
 import java.util.List;
 
@@ -26,18 +26,18 @@ public class ClientProductController {
     }
 
     @GetMapping("/getProduct")
-    public ClientProduct getProduct(@RequestParam int id) {
-        return clientProductService.getProduct(id);
+    public ClientProduct getProduct(@RequestParam long id) {
+        return clientProductService.findOne(id);
     }
 
     @GetMapping("/getUserProduct")
-    public List<ClientProduct> getUserProduct(@RequestParam int userId) {
-        return clientProductService.findProductByUserId(userId);
+    public List<ClientProduct> getUserProduct(@RequestParam long userId) {
+        return clientProductService.getProductByUserId(userId);
     }
 
     @PostMapping("/saveProduct")
-    public void saveProduct(@RequestBody List<ClientProduct> clientProducts) {
-        clientProductService.saveProduct(clientProducts);
+    public void saveProduct(@RequestBody ClientProduct clientProduct) {
+        clientProductService.save(clientProduct);
     }
 
     @PostMapping("/updateProductBalance")
