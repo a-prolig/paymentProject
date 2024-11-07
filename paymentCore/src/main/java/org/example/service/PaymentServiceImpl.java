@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class PaymentServiceImpl implements PaymentService{
+    private final String CLIENT_PROJECTS_API_PATH = "http://127.0.0.1:8081/clientProjects";
     private final RestTemplate restTemplate;
 
     public PaymentServiceImpl(RestTemplate restTemplate) {
@@ -17,16 +18,16 @@ public class PaymentServiceImpl implements PaymentService{
 
     @Override
     public List<ClientProduct> getClientProducts() {
-        return restTemplate.getForObject("http://127.0.0.1:8081/clientProjects/getAllProducts", List.class);
+        return restTemplate.getForObject(String.format("%s/getAllProducts", CLIENT_PROJECTS_API_PATH), List.class);
     }
 
     @Override
     public ClientProduct getClientProduct(String id) {
-        return restTemplate.getForObject(String.format("http://127.0.0.1:8081/clientProjects/getProduct?id=%s", id), ClientProduct.class);
+        return restTemplate.getForObject(String.format("%s/getProduct?id=%s", CLIENT_PROJECTS_API_PATH, id), ClientProduct.class);
     }
 
     @Override
     public ClientProduct executePayment(RequestDto dto) {
-        return restTemplate.postForObject("http://localhost:8081/clientProjects/updateProductBalance", dto, ClientProduct.class);
+        return restTemplate.postForObject(String.format("%s/updateProductBalance", CLIENT_PROJECTS_API_PATH), dto, ClientProduct.class);
     }
 }
